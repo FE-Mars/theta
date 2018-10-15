@@ -1,5 +1,5 @@
 {
-  "name": "theta",
+  "name": "@tools/theta",
   "version": "1.0.0",
   "description": "PC端脚手架",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "theta": "bin/theta.js"
+    "theta": "./bin/theta.js"
   },
   "author": "wangjun",
   "license": "ISC",
