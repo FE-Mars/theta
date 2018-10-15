@@ -1,0 +1,23 @@
+{
+  "name": "theta",
+  "version": "1.0.0",
+  "description": "PC端脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "theta": "bin/theta.js"
+  },
+  "author": "wangjun",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0",
+    "init-package-json": "^1.10.3",
+    "inquirer": "^6.0.0",
+    "ora": "^3.0.0"
+  },
+  "devDependencies": {},
+  "keywords": []
+}

@@ -1,0 +1,67 @@
+/**
+ * 公共配置
+ */
+const path = require('path');
+const webpack = require('webpack');
+const {
+  VueLoaderPlugin
+} = require('vue-loader');
+const TransferToCmdPlugin = require('webpack-transfer-cmd-plugin');
+const RuntimePublicPathPlugin = require("webpack-runtime-public-path-plugin")
+const {
+  projectGroup,
+  projectName
+} = require('../project.config.js');
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
+
+module.exports = {
+  mode: 'development',
+  context: path.resolve(__dirname, '../'),
+  output: {
+    filename: '[name].js',
+    chunkFilename: 'chunk-[name].js',
+    libraryTarget: 'commonjs2',
+    library: `${projectGroup}_${projectName}`
+  },
+  // 加载器
+  module: {
+    rules: [{
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(woff|eot|ttf)\??.*$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]'
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src')
+    }
+  },
+  plugins: [
+    new RuntimePublicPathPlugin({
+      runtimePublicPath: `FS.${projectGroup.toLocaleUpperCase()}_${projectName.toLocaleUpperCase()}_MODULE.ROOT_PATH + "/"`
+    }),
+    new webpack.DefinePlugin({
+      seajsRequire: 'require'
+    }),
+    new VueLoaderPlugin(),
+    new TransferToCmdPlugin()
+  ]
+};
