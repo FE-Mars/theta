@@ -61,17 +61,7 @@ module.exports = (env, argv) => {
             'postcss-loader',
             'less-loader'
           ],
-          exclude: /node_modules|async\-moduels/
-        },
-        {
-          test: /\.less$/,
-          use: [
-            'vue-style-loader',
-            'css-loader',
-            'postcss-loader',
-            'less-loader'
-          ],
-          include: /async\-modules/
+          exclude: /node_modules/
         },
         {
           test: /\.css$/,
@@ -81,15 +71,6 @@ module.exports = (env, argv) => {
             'postcss-loader'
           ],
           exclude: /node_modules/
-        },
-        {
-          test: /\.css$/,
-          use: [
-            'vue-style-loader',
-            'css-loader',
-            'postcss-loader'
-          ],
-          include: /async\-modules/
         },
         {
           test: /\.(gif|jpg|png|svg)\??.*$/,
