@@ -32,7 +32,6 @@ function getCacheGroups(entries) {
     groups[`${key}Style`] = {
       name: key,
       test: (m,c,entry = key) => m.constructor.name === 'CssModule' && recursiveIssuer(m, entry) === entry,
-      chunks: 'all',
       enforce: true,
       reuseExistingChunk: true
     };
@@ -121,6 +120,8 @@ module.exports = (env, argv) => {
         new OptimizeCssAssetsPlugin()
       ],
       splitChunks: {
+        chunks: 'all',
+        minChunks: 3,
         cacheGroups: getCacheGroups(webpack_config.entry)
       }
       // splitChunks: {
