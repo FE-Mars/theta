@@ -4,7 +4,7 @@ const utils = require('./util.js');
 
 const {
   webpackConfig,
-  proxy_target,
+  proxyTarget,
   devDirectory = 'dev',
   projectGroup,
   projectName
@@ -70,7 +70,7 @@ module.exports = (env, argv) => {
 
         proxy: {
           '**': {
-            target: proxy_target,
+            target: proxyTarget,
             secure: false,
             changeOrigin: false,
             withCredentials: true,
