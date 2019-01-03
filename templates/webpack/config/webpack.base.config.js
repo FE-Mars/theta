@@ -10,8 +10,11 @@ const TransferToCmdPlugin = require('webpack-transfer-cmd-plugin');
 const RuntimePublicPathPlugin = require("webpack-runtime-public-path-plugin")
 const {
   projectGroup,
-  projectName
+  projectName,
+  runtimePublicPath
 } = require('../project.config.js');
+
+const _projectGroup = projectGroup ? projectGroup + '_' : '';
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -24,7 +27,7 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: 'chunk-[name].js',
     libraryTarget: 'commonjs2',
-    library: `${projectGroup}_${projectName}`
+    library: `${_projectGroup + projectName}`
   },
   // 加载器
   module: {
@@ -56,7 +59,9 @@ module.exports = {
   },
   plugins: [
     new RuntimePublicPathPlugin({
-      runtimePublicPath: `FS.${projectGroup.toLocaleUpperCase()}_${projectName.toLocaleUpperCase()}_MODULE.ROOT_PATH + "/"`
+      runtimePublicPath: runtimePublicPath ?
+        `${runtimePublicPath}` : 
+        `FS.${_projectGroup ? _projectGroup.toLocaleUpperCase() : ''}${projectName.toLocaleUpperCase()}_MODULE.ROOT_PATH + "/"`
     }),
     new webpack.DefinePlugin({
       seajsRequire: 'require'

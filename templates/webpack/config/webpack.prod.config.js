@@ -158,7 +158,7 @@ module.exports = (env, argv) => {
         }
       }),
       new TplConfigPlugin({
-        prefix: projectGroup + moduleSeparator + projectName + moduleSeparator
+        prefix: (projectGroup ? projectGroup + moduleSeparator : '') + projectName + moduleSeparator
       })
     ]
   }, webpack_config);

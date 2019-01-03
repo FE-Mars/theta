@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
       devtool: "source-map",
       output: {
         path: path.resolve(__dirname, `../${devDirectory}`),
-        publicPath: `html/${projectGroup}/${projectName}/`
+        publicPath: `html/${projectGroup ? projectGroup + '/' : ''}${projectName}/`
       },
       module: {
         rules: [
