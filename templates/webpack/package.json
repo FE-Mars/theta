@@ -40,5 +40,8 @@
     "webpack-runtime-public-path-plugin": "^1.1.2",
     "webpack-tplconfig-plugin": "^1.0.3",
     "webpack-transfer-cmd-plugin": "^1.0.5"
+  },
+  "dependencies": {
+    "vue": "^2.5.16"
   }
 }
