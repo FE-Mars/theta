@@ -1,13 +1,13 @@
 {
   "name": "@tools/theta",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "PC端脚手架",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "theta": "./bin/command"
+    "theta": "./bin/theta"
   },
   "author": "wangjun",
   "license": "ISC",
