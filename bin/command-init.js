@@ -1,14 +1,15 @@
-const program = require('commander');
+const program = require('commander');     //命令行工具   https://github.com/tj/commander.js
 const path = require('path');
 const fs = require('fs');
-const glob = require('glob');
-const inquirer = require('inquirer');
+const inquirer = require('inquirer');     //命令行交互   https://github.com/SBoudrias/Inquirer.js
+const chalk = require('chalk');           //命令行输出样式美化    https://github.com/chalk/chalk
+const logSymbols = require('log-symbols');      //增加log级别的图标  https://github.com/sindresorhus/log-symbols
 const Utils = require('../common/utils.js');
 
 
 program.usage('<project-name>')
   .option('-y, --yes', 'Use default values All')
-  .option('-t, --template [templateName]', 'Template used by project', 'webpack')
+  .option('-t, --template [templateName]', 'Template used by project', 'webpack-seajs')
   .option('-r, --repository [repository]', 'Using the specified repository')
   .parse(process.argv);
 
@@ -64,11 +65,24 @@ new Promise(resolve => {
 }).then((result) => {
   inquirer.prompt(createPrompts(result)).then(answers => {
     if(Object.keys(answers).length === 0) answers = result;     //如果没有答案使用默认值
-    console.log(answers);
     Utils.downloadGitRepo(
       program.repository ? program.repository : `http://git.firstshare.cn/fe-tools/theta-template#${program.template}`,
       answers.build_in_current ? '.' : answers.name
-    );
+    ).then((destination) => {
+      Utils.updatedFile(path.join(destination, 'package.json'), answers);     //修改package.json文件的相关信息
+      if(!program.repository && program.template === 'webpack-seajs')     //只有当采用默认的模板时
+        Utils.updatedFile(path.join(destination, 'project.config.js'), answers);    //修改project.config.js文件的相关信息
+
+      console.log();
+      console.log(logSymbols.success, chalk.green('SUCCESS'));
+      console.log();
+      console.log(chalk.bgWhite.black('You need：'));
+      !answers.build_in_current && console.log(chalk.yellow(`\tcd ${answers.name}`));
+      console.log(`\t${chalk.yellow('npm install')}\n\t${chalk.yellow('npm start')}`);
+      console.log();
+    }, (error) => {
+      console.log(logSymbols.error, chalk.red(`FAILD: ${error}`));
+    });
   });
 })
 
