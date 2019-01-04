@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const program = require('commander') 
+const pkg = require('../package.json');
+
+program.version(pkg.version)
+  .usage('<command> [project-name]')
+  .command('init', 'create a new project')
+  .alias('i')
+  .parse(process.argv);

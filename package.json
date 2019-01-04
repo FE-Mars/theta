@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "theta": "./bin/theta.js"
+    "theta": "./bin/command"
   },
   "author": "wangjun",
   "license": "ISC",
@@ -18,6 +18,8 @@
     "inquirer": "^6.0.0",
     "ora": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "download-git-repo": "^1.1.0"
+  },
   "keywords": []
 }
