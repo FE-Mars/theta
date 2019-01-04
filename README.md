@@ -19,7 +19,7 @@ theta -h
 
 # 用法
 ```bash
-// default template demo  repository-url： http://git.firstshare.cn/fe-tools/theta-template
+// default template demo  repository-url： https://github.com/FE-Mars/theta-template
 theta init <project-name>
 
 //use your github template
