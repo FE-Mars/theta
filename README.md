@@ -5,9 +5,8 @@
 theta是基于命令行的脚手架，用于创建基于Vue + Webpack的pc项目，可使用主站的现有模块  
 
 # 安装
-从咱们私有npm仓库安装theta。
 ```bash
-npm install -g @tools/theta
+npm install -g theta
 ```
 
 # 帮助
