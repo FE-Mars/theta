@@ -66,7 +66,7 @@ new Promise(resolve => {
   inquirer.prompt(createPrompts(result)).then(answers => {
     if(Object.keys(answers).length === 0) answers = result;     //如果没有答案使用默认值
     Utils.downloadGitRepo(
-      program.repository ? program.repository : `http://git.firstshare.cn/fe-tools/theta-template#${program.template}`,
+      program.repository ? program.repository : `https://github.com/FE-Mars/theta-template#${program.template}`,
       answers.build_in_current ? '.' : answers.name
     ).then((destination) => {
       Utils.updatedFile(path.join(destination, 'package.json'), answers);     //修改package.json文件的相关信息
